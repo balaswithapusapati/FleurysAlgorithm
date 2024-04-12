@@ -1,0 +1,16 @@
+
+Analysis of Time Complexity :
+Let us first analyse the Time Complexity of implementation :
+1. Finding the Start Vertex (find_start_vert): This function iterates over all vertices in the graph once, which takes O(V) time, where V is the number of vertices.
+2. Checking if an Edge is a Bridge (is_bridge): This function checks the degree of a vertex, which takes O(V) time in the worst case, where V is the number of vertices. However, since each edge is checked at most twice (once for each endpoint), the total time complexity for this function can be considered O(E), where E is the number of edges.
+3. Counting Edges (edge_count): This function calculates the number of edges in the graph, which takes O(V^2) time for an adjacency matrix representation. However, since the number of edges is typically linear with the number of vertices (E ~ V), we can consider this as O(E) time complexity.
+4. Fleury's Algorithm (fleury_algorithm): The main algorithm uses a loop that iterates over all edges in the graph. In the worst case, each edge is visited once, leading to a time complexity of O(E). However, in each iteration, the algorithm may recursively call itself, potentially visiting additional edges. This recursion can lead to a total time complexity of O(E^2) in the worst case, as the algorithm may revisit edges multiple times.
+Overall, the time complexity of your implementation of Fleury's algorithm is O(V + E + E^2), which simplifies to O(E^2) in most cases. This is because the recursive nature of the algorithm can lead to revisiting edges, especially in graphs with bridges or certain structures.
+
+Best Case Time Complexity: 
+The best-case scenario occurs when the graph has an Eulerian circuit or path. In this case, the algorithm selects edges without creating bridges, leading to a linear time complexity of O(E), where E is the number of edges in the graph. This scenario happens when all vertices have even degrees or exactly two vertices have odd degrees (for an Eulerian path).
+
+Worst Case Time Complexity:
+ The worst-case scenario occurs when the graph has no Eulerian circuit or path, and the algorithm encounters bridges at every step. In this case, the algorithm may need to explore all possible edges at each vertex, leading to a time complexity of O(E^2), where E is the number of edges in the graph. This scenario typically occurs in highly connected graphs where there are many bridges.
+
+In summary, the best-case time complexity of Fleury's algorithm in your implementation is O(E), and the worst-case time complexity is O(E^2).
